@@ -5790,8 +5790,7 @@ HRESULT COPIED__CreateVertexesForTex(IMAGE_TEXTURE* pOutImageTexture, float x, f
 int countdownNumberTexSize = 256;
 
 void DrawCountdownNumbers(float countdown, int centerX, int centerY) {
-  // Draw numbers
-  int i = std::ceil(countdown);
+  int i = static_cast<int>(countdown) + 1; // ceil
   i = std::clamp(i, 0, 5);
   IMAGE_TEXTURE tex = countdownTex[i];
 
@@ -5803,7 +5802,7 @@ void DrawCountdownNumbers(float countdown, int centerX, int centerY) {
   int y = centerY - size / 2;
 
   HRESULT hResult = COPIED__CreateVertexesForTex(
-    &tex, x, y, size, size,
+    &tex, (float)x, (float)y, (float)size, (float)size,
     0
   );
 
@@ -5815,13 +5814,12 @@ void DrawCountdownNumbers(float countdown, int centerX, int centerY) {
 }
 
 void DrawCountdownDots(float countdown, int centerX, int centerY) {
-  // Draw dots
   if(countdown < 0) { return; }
 
   IMAGE_TEXTURE tex = dot_tex;
 
   float decimal = std::abs(countdown - std::floor(countdown));
-  int dots = std::floor(decimal * 10);
+  int dots = static_cast<int>(decimal * 10); // floor
   int size = 16;
   int y = countdownNumberTexSize / 2 + 50;
 
@@ -5829,7 +5827,7 @@ void DrawCountdownDots(float countdown, int centerX, int centerY) {
     int x = i * (size + 10);
 
     HRESULT hResult = COPIED__CreateVertexesForTex(
-      &tex, centerX + x - size / 2, centerY + y, size, size,
+      &tex, (float)(centerX + x - size / 2), (float)(centerY + y), (float)size, (float)size,
       0
     );
 
@@ -5840,7 +5838,7 @@ void DrawCountdownDots(float countdown, int centerX, int centerY) {
     }
 
     hResult = COPIED__CreateVertexesForTex(
-      &tex, centerX - x - size / 2, centerY + y, size, size,
+      &tex, (float)(centerX - x - size / 2), (float)(centerY + y), (float)size, (float)size,
       0
     );
 

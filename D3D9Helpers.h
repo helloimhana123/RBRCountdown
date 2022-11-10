@@ -44,7 +44,7 @@
 #if USE_DEBUG == 1
 #define DebugPrint DebugPrintFunc // DEBUG version to dump logfile messages
 #else
-#define DebugPrint  // RELEASE version of DebugPrint doing nothing
+#define DebugPrint // RELEASE version of DebugPrint doing nothing
 #endif
 
 #define LogPrint DebugPrintFunc   // LogPrint prints out a txt message both in retail and debug builds
@@ -77,8 +77,8 @@ extern bool _iEnds_With(std::string s1, std::string s2, bool s2AlreadyInLowercas
 extern bool _iEqual(const std::string& s1, const std::string& s2, bool s2AlreadyInLowercase = FALSE);   // Case-insensitive string comparison
 extern bool _iEqual(const std::wstring& s1, const std::wstring& s2, bool s2AlreadyInLowercase = FALSE); // Case-insensitive string comparison
 
-extern void _Trim(std::wstring & s);  // Trim wstring (in-place, modify the s)
-extern void _Trim(std::string & s);  // Trim string (in-place, modify the s)
+extern void _Trim(std::wstring& s);  // Trim wstring (in-place, modify the s)
+extern void _Trim(std::string& s);  // Trim string (in-place, modify the s)
 //extern std::wstring _TrimCopy(std::wstring s);  // Trim wstring (return new string, the s unmodified)
 
 extern std::wstring _ReplaceStr(const std::wstring& str, const std::wstring& searchKeyword, const std::wstring& replaceValue, bool caseInsensitive = TRUE);
@@ -87,14 +87,14 @@ extern std::string  _ReplaceStr(const std::string& str, const std::string& searc
 extern std::wstring _RemoveEnclosingChar(const std::wstring& str, const WCHAR searchChar, bool caseInsensitive = TRUE);
 extern std::string  _RemoveEnclosingChar(const std::string& str, const char searchChar, bool caseInsensitive = TRUE);
 
-extern std::wstring _ToWString(const std::string & s);	   // Convert std::string to std::wstring
-extern std::string  _ToString(const std::wstring & s);     // Convert std::wstring to std:string
+extern std::wstring _ToWString(const std::string& s);	   // Convert std::string to std::wstring
+extern std::string  _ToString(const std::wstring& s);     // Convert std::wstring to std:string
 
-extern std::string  _ToUTF8String(const std::wstring & s); // Convert widechar std::wstring(UTF8) to multibyte string value (WinOS specific implementation)
-extern std::wstring _ToUTF8WString(const std::string & s); // Convert multibyte std::string(UTF8) to widechar UTF8 string value (WinOS specific implementation) 
-extern std::wstring _ToUTF8WString(const std::wstring & s);// Convert multibyte std::wstring(UTF8) to widechar UTF8 string value (WinOS specific implementation) 
+extern std::string  _ToUTF8String(const std::wstring& s); // Convert widechar std::wstring(UTF8) to multibyte string value (WinOS specific implementation)
+extern std::wstring _ToUTF8WString(const std::string& s); // Convert multibyte std::string(UTF8) to widechar UTF8 string value (WinOS specific implementation) 
+extern std::wstring _ToUTF8WString(const std::wstring& s);// Convert multibyte std::wstring(UTF8) to widechar UTF8 string value (WinOS specific implementation) 
 
-extern std::wstring _DecodeUtf8String(const std::wstring & s_encoded); // Decode UTF8 encoded string to "normal" string value
+extern std::wstring _DecodeUtf8String(const std::wstring& s_encoded); // Decode UTF8 encoded string to "normal" string value
 
 extern inline void _ToLowerCase(std::string& s);       // Convert string to lowercase letters (in-place, so the original str in the parameter is converted)
 extern inline void _ToLowerCase(std::wstring& s);      // Convert wstring to lowercase letters (in-place)
@@ -107,11 +107,11 @@ extern bool _IsAllDigit(const std::wstring& s); // Check if all wstring chars ar
 
 extern std::string _ToBinaryBitString(BYTE byteValue); // Convert BYTE value to binary "bit field" string (usually some log messages want to show an integer as binary bit field)
 
-extern std::string GetFileVersionInformationAsString(const std::wstring & fileName); // Return file version info as "major.minor.patch.build" string value
-extern BOOL GetFileVersionInformationAsNumber(const std::wstring & fileName, UINT* outMajorVer, UINT* outMinorVer, UINT* outPatchVer, UINT* outBuildVer); // Return file version info
+extern std::string GetFileVersionInformationAsString(const std::wstring& fileName); // Return file version info as "major.minor.patch.build" string value
+extern BOOL GetFileVersionInformationAsNumber(const std::wstring& fileName, UINT* outMajorVer, UINT* outMinorVer, UINT* outPatchVer, UINT* outBuildVer); // Return file version info
 
 extern std::string GetGUIDAsString(); // Return GUID value as string
-extern void GetCurrentDateAndTimeAsYYYYMMDD_HHMISS(int *pCurrentDate, std::string* pCurrentTime = nullptr); // Return current YYYYMMDD and HHMISS
+extern void GetCurrentDateAndTimeAsYYYYMMDD_HHMISS(int* pCurrentDate, std::string* pCurrentTime = nullptr); // Return current YYYYMMDD and HHMISS
 
 extern std::string GetSecondsAsMISSMS(float valueInSecs, bool padWithTwoDigits = true, bool prefixPlusSign = false); // Return value in secs as MI:SS,MS formatted string
 extern std::string GetSecondsAsKMh(float valueInSecs, float lengthInMeters, bool postfixKmh = true, int outputPrecision = 0); // Return value in secs and length in meters as km/h formatted string
@@ -122,10 +122,10 @@ extern float FloorFloat(float value, int decimals);
 
 inline bool _IsRectZero(const RECT& rect) { return (rect.bottom == 0 && rect.right == 0 && rect.left == 0 && rect.top == 0); } // Return TRUE if all rect coordinate values are zero
 
-extern bool _StringToRect (const std::wstring & s, RECT * outRect, const wchar_t separatorChar = L' '); // String in "0 50 200 400" format is converted as RECT struct value 
-extern bool _StringToRect (const std::string & s, RECT * outRect, const char separatorChar = ' ');
-extern bool _StringToPoint(const std::wstring & s, POINT * outPoint, const wchar_t separatorChar = L' ', long defaultValue = 0); // String in "0 50" format is converted as POINT struct value 
-extern bool _StringToPoint(const std::string & s, POINT * outPoint, const char separatorChar = ' ', long defaultValue = 0);
+extern bool _StringToRect(const std::wstring& s, RECT* outRect, const wchar_t separatorChar = L' '); // String in "0 50 200 400" format is converted as RECT struct value 
+extern bool _StringToRect(const std::string& s, RECT* outRect, const char separatorChar = ' ');
+extern bool _StringToPoint(const std::wstring& s, POINT* outPoint, const wchar_t separatorChar = L' ', long defaultValue = 0); // String in "0 50" format is converted as POINT struct value 
+extern bool _StringToPoint(const std::string& s, POINT* outPoint, const char separatorChar = ' ', long defaultValue = 0);
 
 extern std::wstring GetCmdLineArgValue(const std::wstring& argName); // Return the value of specified command line argument (fex "RichardBurnsRally_SSE.exe -AutoLogonParam1 myRun.rpl" would have -AutoLogonParam1 arg)
 extern std::string  GetCmdLineArgValue(const std::string& argName);
@@ -143,7 +143,7 @@ inline DWORD GetTickCount32()
 #pragma warning(push)
 #pragma warning(disable:28159)
 #endif
-	return ::GetTickCount();
+  return ::GetTickCount();
 #if defined(_MSC_VER) 
 #pragma warning(pop)
 #endif
@@ -157,146 +157,146 @@ inline DWORD GetTickCount32()
 class CSimpleIniEx : public CSimpleIni
 {
 public:
-	SI_Error LoadFileEx(const char* szFileName)
-	{
-		// UTF16 file. Convert it to UTF8 because CSimpleIniW doesn't support UTF16 format (RBRPro uses UTF16 formatted carList.ini file)
-		if (::_IsFileInUTF16Format(szFileName))
-			return this->LoadData(::_ConvertUTF16FileContentToUTF8(szFileName));
-		else
-			return this->LoadFile(szFileName);
-	}
+  SI_Error LoadFileEx(const char* szFileName)
+  {
+    // UTF16 file. Convert it to UTF8 because CSimpleIniW doesn't support UTF16 format (RBRPro uses UTF16 formatted carList.ini file)
+    if(::_IsFileInUTF16Format(szFileName))
+      return this->LoadData(::_ConvertUTF16FileContentToUTF8(szFileName));
+    else
+      return this->LoadFile(szFileName);
+  }
 
-	std::string GetValueEx(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, const std::string& sDefault)
-	{
-		std::string result = this->GetValue(sSection1.c_str(), sKey.c_str(), "");
-		_Trim(result);
-		result = _RemoveEnclosingChar(result, '"', false);
-		
-		if (result.empty() && !sSection2.empty())
-		{
-			result = this->GetValue(sSection2.c_str(), sKey.c_str(), "");
-			_Trim(result);
-			result = _RemoveEnclosingChar(result, '"', false);
-		}
+  std::string GetValueEx(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, const std::string& sDefault)
+  {
+    std::string result = this->GetValue(sSection1.c_str(), sKey.c_str(), "");
+    _Trim(result);
+    result = _RemoveEnclosingChar(result, '"', false);
 
-		if (result.empty()) 
-			result = sDefault;
+    if(result.empty() && !sSection2.empty())
+    {
+      result = this->GetValue(sSection2.c_str(), sKey.c_str(), "");
+      _Trim(result);
+      result = _RemoveEnclosingChar(result, '"', false);
+    }
 
-		return result;
-	}
+    if(result.empty())
+      result = sDefault;
 
-	void GetValueEx(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, const std::string& sDefault, RECT* outRect)
-	{
-		std::string result = GetValueEx(sSection1, sSection2, sKey, sDefault);
-		if (result != "0") _StringToRect(result, outRect);
-		else outRect->bottom = -1;
-	}
+    return result;
+  }
 
-	void GetValueEx(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, const std::string& sDefault, POINT* outPoint, long defaultValue = 0)
-	{
-		std::string result = GetValueEx(sSection1, sSection2, sKey, sDefault);
-		_StringToPoint(result, outPoint, ' ', defaultValue);
+  void GetValueEx(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, const std::string& sDefault, RECT* outRect)
+  {
+    std::string result = GetValueEx(sSection1, sSection2, sKey, sDefault);
+    if(result != "0") _StringToRect(result, outRect);
+    else outRect->bottom = -1;
+  }
 
-	}
+  void GetValueEx(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, const std::string& sDefault, POINT* outPoint, long defaultValue = 0)
+  {
+    std::string result = GetValueEx(sSection1, sSection2, sKey, sDefault);
+    _StringToPoint(result, outPoint, ' ', defaultValue);
 
-	long GetValueEx(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, long iDefault)
-	{
-		long result = this->GetLongValue(sSection1.c_str(), sKey.c_str(), -9999);
-		if (result == -9999 && !sSection2.empty()) 
-			result = this->GetLongValue(sSection2.c_str(), sKey.c_str(), -9999);
-		
-		if (result == -9999)
-			result = iDefault;
+  }
 
-		return result;
-	}
+  long GetValueEx(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, long iDefault)
+  {
+    long result = this->GetLongValue(sSection1.c_str(), sKey.c_str(), -9999);
+    if(result == -9999 && !sSection2.empty())
+      result = this->GetLongValue(sSection2.c_str(), sKey.c_str(), -9999);
 
-	float GetValueExFloat(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, float iDefault)
-	{
-		float fResult;
-		double result = this->GetDoubleValue(sSection1.c_str(), sKey.c_str(), -9999.0);
-		if (result == -9999.0 && !sSection2.empty())
-			result = this->GetDoubleValue(sSection2.c_str(), sKey.c_str(), -9999.0);
+    if(result == -9999)
+      result = iDefault;
 
-		if (result == -9999.0)
-			fResult = iDefault;
-		else
-			fResult = static_cast<float>(result);
+    return result;
+  }
 
-		return fResult;
-	}
+  float GetValueExFloat(const std::string& sSection1, const std::string& sSection2, const std::string& sKey, float iDefault)
+  {
+    float fResult;
+    double result = this->GetDoubleValue(sSection1.c_str(), sKey.c_str(), -9999.0);
+    if(result == -9999.0 && !sSection2.empty())
+      result = this->GetDoubleValue(sSection2.c_str(), sKey.c_str(), -9999.0);
+
+    if(result == -9999.0)
+      fResult = iDefault;
+    else
+      fResult = static_cast<float>(result);
+
+    return fResult;
+  }
 };
 
 class CSimpleIniWEx : public CSimpleIniW
 {
 public:
-	SI_Error LoadFileEx(const WCHAR* szFileName)
-	{
-		// UTF16 file. Convert it to UTF8 because CSimpleIniW doesn't support UTF16 format (RBRPro uses UTF16 formatted carList.ini file)
-		if (::_IsFileInUTF16Format(szFileName))
-			return this->LoadData(::_ConvertUTF16FileContentToUTF8(_ToString(szFileName).c_str()));
-		else
-			return this->LoadFile(szFileName);
-	}
+  SI_Error LoadFileEx(const WCHAR* szFileName)
+  {
+    // UTF16 file. Convert it to UTF8 because CSimpleIniW doesn't support UTF16 format (RBRPro uses UTF16 formatted carList.ini file)
+    if(::_IsFileInUTF16Format(szFileName))
+      return this->LoadData(::_ConvertUTF16FileContentToUTF8(_ToString(szFileName).c_str()));
+    else
+      return this->LoadFile(szFileName);
+  }
 
-	std::wstring GetValueEx(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, const std::wstring& sDefault)
-	{
-		std::wstring result = this->GetValue(sSection1.c_str(), sKey.c_str(), L"");
-		_Trim(result);
-		result = _RemoveEnclosingChar(result, L'"', false);
+  std::wstring GetValueEx(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, const std::wstring& sDefault)
+  {
+    std::wstring result = this->GetValue(sSection1.c_str(), sKey.c_str(), L"");
+    _Trim(result);
+    result = _RemoveEnclosingChar(result, L'"', false);
 
-		if (result.empty() && !sSection2.empty())
-		{
-			result = this->GetValue(sSection2.c_str(), sKey.c_str(), L"");
-			_Trim(result);
-			result = _RemoveEnclosingChar(result, L'"', false);
-		}
+    if(result.empty() && !sSection2.empty())
+    {
+      result = this->GetValue(sSection2.c_str(), sKey.c_str(), L"");
+      _Trim(result);
+      result = _RemoveEnclosingChar(result, L'"', false);
+    }
 
-		if (result.empty())
-			result = sDefault;
+    if(result.empty())
+      result = sDefault;
 
-		return result;
-	}
+    return result;
+  }
 
-	void GetValueEx(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, const std::wstring& sDefault, RECT* outRect)
-	{
-		std::wstring result = GetValueEx(sSection1, sSection2, sKey, sDefault);
-		if (result != L"0") _StringToRect(result, outRect);
-		else outRect->bottom = -1;
-	}
+  void GetValueEx(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, const std::wstring& sDefault, RECT* outRect)
+  {
+    std::wstring result = GetValueEx(sSection1, sSection2, sKey, sDefault);
+    if(result != L"0") _StringToRect(result, outRect);
+    else outRect->bottom = -1;
+  }
 
-	void GetValueEx(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, const std::wstring& sDefault, POINT* outPoint, long defaultValue = 0)
-	{
-		std::wstring result = GetValueEx(sSection1, sSection2, sKey, sDefault);
-		_StringToPoint(result, outPoint, L' ', defaultValue);
-	}
+  void GetValueEx(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, const std::wstring& sDefault, POINT* outPoint, long defaultValue = 0)
+  {
+    std::wstring result = GetValueEx(sSection1, sSection2, sKey, sDefault);
+    _StringToPoint(result, outPoint, L' ', defaultValue);
+  }
 
-	long GetValueEx(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, long iDefault)
-	{
-		long result = this->GetLongValue(sSection1.c_str(), sKey.c_str(), -9999);
-		if (result == -9999 && !sSection2.empty())
-			result = this->GetLongValue(sSection2.c_str(), sKey.c_str(), -9999);
+  long GetValueEx(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, long iDefault)
+  {
+    long result = this->GetLongValue(sSection1.c_str(), sKey.c_str(), -9999);
+    if(result == -9999 && !sSection2.empty())
+      result = this->GetLongValue(sSection2.c_str(), sKey.c_str(), -9999);
 
-		if (result == -9999)
-			result = iDefault;
+    if(result == -9999)
+      result = iDefault;
 
-		return result;
-	}
+    return result;
+  }
 
-	float GetValueExFloat(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, float iDefault)
-	{
-		float fResult;
-		double result = this->GetDoubleValue(sSection1.c_str(), sKey.c_str(), -9999.0);
-		if (result == -9999.0 && !sSection2.empty())
-			result = this->GetDoubleValue(sSection2.c_str(), sKey.c_str(), -9999.0);
+  float GetValueExFloat(const std::wstring& sSection1, const std::wstring& sSection2, const std::wstring& sKey, float iDefault)
+  {
+    float fResult;
+    double result = this->GetDoubleValue(sSection1.c_str(), sKey.c_str(), -9999.0);
+    if(result == -9999.0 && !sSection2.empty())
+      result = this->GetDoubleValue(sSection2.c_str(), sKey.c_str(), -9999.0);
 
-		if (result == -9999.0)
-			fResult = iDefault;
-		else
-			fResult = static_cast<float>(result);
+    if(result == -9999.0)
+      fResult = iDefault;
+    else
+      fResult = static_cast<float>(result);
 
-		return fResult;
-	}
+    return fResult;
+  }
 };
 
 
@@ -304,14 +304,14 @@ public:
 // Simple DX9 render state change cache and restoration class
 //
 typedef struct {
-	D3DRENDERSTATETYPE stateType;
-	DWORD value;
+  D3DRENDERSTATETYPE stateType;
+  DWORD value;
 }D3D9RENDERSTATECACHEITEM;
 typedef D3D9RENDERSTATECACHEITEM* PD3D9RENDERSTATECACHEITEM;
 
 typedef struct {
-	D3DTEXTURESTAGESTATETYPE stageStateType;
-	DWORD value;
+  D3DTEXTURESTAGESTATETYPE stageStateType;
+  DWORD value;
 }D3D9STAGESTATECACHEITEM;
 typedef D3D9STAGESTATECACHEITEM* PD3D9STAGESTATECACHEITEM;
 
@@ -319,87 +319,87 @@ typedef D3D9STAGESTATECACHEITEM* PD3D9STAGESTATECACHEITEM;
 class CD3D9RenderStateCache
 {
 protected:
-	LPDIRECT3DDEVICE9 m_pD3Device;
-	BOOL m_bAutoRestore;
-	std::vector<D3D9RENDERSTATECACHEITEM> m_renderStateCacheList;
-	std::vector<D3D9STAGESTATECACHEITEM>  m_stageStateCacheList;
-	std::vector<DWORD> m_FVFStateCacheList;
+  LPDIRECT3DDEVICE9 m_pD3Device;
+  BOOL m_bAutoRestore;
+  std::vector<D3D9RENDERSTATECACHEITEM> m_renderStateCacheList;
+  std::vector<D3D9STAGESTATECACHEITEM>  m_stageStateCacheList;
+  std::vector<DWORD> m_FVFStateCacheList;
 
 public:
-	CD3D9RenderStateCache(LPDIRECT3DDEVICE9 pD3Device, BOOL autoRestore = true)
-	{
-		m_pD3Device = pD3Device;
-		m_bAutoRestore = autoRestore; // Restore DX9 render state automatically in destructor if the state is not yet restored
-	}
+  CD3D9RenderStateCache(LPDIRECT3DDEVICE9 pD3Device, BOOL autoRestore = true)
+  {
+    m_pD3Device = pD3Device;
+    m_bAutoRestore = autoRestore; // Restore DX9 render state automatically in destructor if the state is not yet restored
+  }
 
-	HRESULT SetRenderState(D3DRENDERSTATETYPE stateType, DWORD value)
-	{
-		DWORD oldValue;
-		if (SUCCEEDED(m_pD3Device->GetRenderState(stateType, &oldValue)))
-			m_renderStateCacheList.push_back({ stateType, oldValue });
+  HRESULT SetRenderState(D3DRENDERSTATETYPE stateType, DWORD value)
+  {
+    DWORD oldValue;
+    if(SUCCEEDED(m_pD3Device->GetRenderState(stateType, &oldValue)))
+      m_renderStateCacheList.push_back({ stateType, oldValue });
 
-		return m_pD3Device->SetRenderState(stateType, value);
-	}
+    return m_pD3Device->SetRenderState(stateType, value);
+  }
 
-	HRESULT SetTextureStageState(D3DTEXTURESTAGESTATETYPE stageStateType, DWORD value)
-	{
-		DWORD oldValue;
-		if (SUCCEEDED(m_pD3Device->GetTextureStageState(0, stageStateType, &oldValue)))
-			m_stageStateCacheList.push_back({ stageStateType, oldValue });
+  HRESULT SetTextureStageState(D3DTEXTURESTAGESTATETYPE stageStateType, DWORD value)
+  {
+    DWORD oldValue;
+    if(SUCCEEDED(m_pD3Device->GetTextureStageState(0, stageStateType, &oldValue)))
+      m_stageStateCacheList.push_back({ stageStateType, oldValue });
 
-		return m_pD3Device->SetTextureStageState(0, stageStateType, value);
-	}
+    return m_pD3Device->SetTextureStageState(0, stageStateType, value);
+  }
 
-	HRESULT SetFVF(DWORD value)
-	{
-		DWORD oldValue;
-		if (SUCCEEDED(m_pD3Device->GetFVF(&oldValue)))
-			m_FVFStateCacheList.push_back(oldValue);
+  HRESULT SetFVF(DWORD value)
+  {
+    DWORD oldValue;
+    if(SUCCEEDED(m_pD3Device->GetFVF(&oldValue)))
+      m_FVFStateCacheList.push_back(oldValue);
 
-		return m_pD3Device->SetFVF(value);
-	}
+    return m_pD3Device->SetFVF(value);
+  }
 
 
-	void Clear()
-	{
-		m_renderStateCacheList.clear();
-		m_stageStateCacheList.clear();
-		m_FVFStateCacheList.clear();
-	}
+  void Clear()
+  {
+    m_renderStateCacheList.clear();
+    m_stageStateCacheList.clear();
+    m_FVFStateCacheList.clear();
+  }
 
-	void RestoreState()
-	{
-		// TODO: Restore from the end of the list to beginning to make sure that if the same property is set multiple times the status is restored in correct order
-		// Change the vector to stack type of list?
-		for (auto& cacheItem: m_renderStateCacheList)
-			m_pD3Device->SetRenderState(cacheItem.stateType, cacheItem.value);
+  void RestoreState()
+  {
+    // TODO: Restore from the end of the list to beginning to make sure that if the same property is set multiple times the status is restored in correct order
+    // Change the vector to stack type of list?
+    for(auto& cacheItem : m_renderStateCacheList)
+      m_pD3Device->SetRenderState(cacheItem.stateType, cacheItem.value);
 
-		for (auto& cacheItem : m_stageStateCacheList)
-			m_pD3Device->SetTextureStageState(0, cacheItem.stageStateType, cacheItem.value);
+    for(auto& cacheItem : m_stageStateCacheList)
+      m_pD3Device->SetTextureStageState(0, cacheItem.stageStateType, cacheItem.value);
 
-		for (auto& cacheItem : m_FVFStateCacheList)
-			m_pD3Device->SetFVF(cacheItem);
+    for(auto& cacheItem : m_FVFStateCacheList)
+      m_pD3Device->SetFVF(cacheItem);
 
-		Clear();
-	}
+    Clear();
+  }
 
-	void EnableTransparentAlphaBlending()
-	{
-/*		this->SetRenderState(D3DRS_ALPHAREF, (DWORD)0x000000F0);
-		this->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL);
-		this->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
-		this->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);
-		this->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
-*/
-		this->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-		this->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-		this->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	}
+  void EnableTransparentAlphaBlending()
+  {
+    /*		this->SetRenderState(D3DRS_ALPHAREF, (DWORD)0x000000F0);
+        this->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL);
+        this->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_ONE);
+        this->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_ZERO);
+        this->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
+    */
+    this->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+    this->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+    this->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+  }
 
-	~CD3D9RenderStateCache()
-	{
-		if (m_bAutoRestore) RestoreState();
-	}
+  ~CD3D9RenderStateCache()
+  {
+    if(m_bAutoRestore) RestoreState();
+  }
 };
 
 
@@ -427,35 +427,35 @@ public:
 //
 typedef struct _POINT_int
 {
-	int x;
-	int y;
+  int x;
+  int y;
 
-	bool operator<(const struct _POINT_int& b) const
-	{
-		return (x < b.x && y < b.y);
-	}
+  bool operator<(const struct _POINT_int& b) const
+  {
+    return (x < b.x&& y < b.y);
+  }
 
-	bool operator==(const struct _POINT_int& b) const
-	{
-		return (x == b.x && y == b.y);
-	}
+  bool operator==(const struct _POINT_int& b) const
+  {
+    return (x == b.x && y == b.y);
+  }
 } POINT_int;
 typedef POINT_int* PPOINT_int;
 
 typedef struct _POINT_float
 {
-	float x;
-	float y;
+  float x;
+  float y;
 
-	bool operator<(const struct _POINT_float& b) const
-	{
-		return (x < b.x&& y < b.y);
-	}
+  bool operator<(const struct _POINT_float& b) const
+  {
+    return (x < b.x&& y < b.y);
+  }
 
-	bool operator==(const struct _POINT_float& b) const
-	{
-		return (x == b.x && y == b.y);
-	}
+  bool operator==(const struct _POINT_float& b) const
+  {
+    return (x == b.x && y == b.y);
+  }
 } POINT_float;
 typedef POINT_float* PPOINT_float;
 
@@ -473,36 +473,36 @@ typedef POINT_float* PPOINT_float;
 
 typedef struct
 {
-	float x, y, z;
-	float rhw;
-	DWORD color;
-	float tu, tv;
+  float x, y, z;
+  float rhw;
+  DWORD color;
+  float tu, tv;
 } CUSTOM_VERTEX_TEX_2D;
 typedef CUSTOM_VERTEX_TEX_2D* PCUSTOM_VERTEX_TEX_2D;
 
 typedef struct
 {
-	float x, y, z;
-	float rhw;
-	DWORD color;
+  float x, y, z;
+  float rhw;
+  DWORD color;
 } CUSTOM_VERTEX_2D;
 typedef CUSTOM_VERTEX_2D* PCUSTOM_VERTEX_2D;
 
 /*
 typedef struct
 {
-	float x, y, z;
-	DWORD color;
-	float tu, tv;
+  float x, y, z;
+  DWORD color;
+  float tu, tv;
 } CUSTOM_VERTEX_3D;
 typedef CUSTOM_VERTEX_3D PCUSTOM_VERTEX_3D;
 */
 
 typedef struct
 {
-	IDirect3DTexture9* pTexture;		//   D3D9 texture (fex loaded from a PNG or BMP file)
-	CUSTOM_VERTEX_TEX_2D vertexes2D[4];	//   Rectangle vertex at specified pixel position and size
-	SIZE imgSize;						//   The original size of the loaded PNG file image
+  IDirect3DTexture9* pTexture;		//   D3D9 texture (fex loaded from a PNG or BMP file)
+  CUSTOM_VERTEX_TEX_2D vertexes2D[4];	//   Rectangle vertex at specified pixel position and size
+  SIZE imgSize;						//   The original size of the loaded PNG file image
 } IMAGE_TEXTURE;						// RBR car preview picture (texture and rect vertex)
 typedef IMAGE_TEXTURE* PIMAGE_TEXTURE;
 

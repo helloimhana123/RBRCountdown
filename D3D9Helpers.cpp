@@ -979,9 +979,10 @@ void DebugPrintFunc_CHAR_or_WCHAR(LPCSTR szTxtBuf, LPCWSTR wszTxtBuf, int iMaxCh
       if(bFirstMessage)
       {
         // Mark the output debug logfile as UTF8 file (just in case some debug msg contains utf8 chars)
-        *g_fpLogFile << ::_ToUTF8String(std::wstring(L"" VS_PROJECT_NAME " "));
+        *g_fpLogFile << ::_ToUTF8String(std::wstring(L"RBRCountdown. Based on: " VS_PROJECT_NAME " "));
         *g_fpLogFile << (GetFileVersionInformationAsString(g_sLogFileName + L"\\..\\..\\" L"" VS_PROJECT_NAME L".dll")).c_str();
-        *g_fpLogFile << "  https://github.com/mika-n/NGPCarMenu" << std::endl;
+        *g_fpLogFile << std::endl << "https://github.com/HanaMcHanaface/RBRCountdown" << std::endl;
+        *g_fpLogFile << "https://github.com/mika-n/NGPCarMenu" << std::endl;
       }
 
       try
@@ -1067,7 +1068,6 @@ void DebugClearFile()
   DebugCloseFile();
   DebugOpenFile(true);
 }
-
 
 #if USE_DEBUG == 1
 

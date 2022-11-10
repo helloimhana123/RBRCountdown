@@ -1,4 +1,4 @@
-LIBRARY	NGPCarMenu
+LIBRARY	RBRCountdown
 EXPORTS
 RBR_CreatePlugin
 API_InitializePluginIntegration
