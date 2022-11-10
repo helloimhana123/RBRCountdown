@@ -16,6 +16,4 @@ To install, first find your RBR installation folder. Then, go to the `Plugins` f
 
 ## Uninstall
 
-Simply remove the files you moved when installing.
-
-
+In the Plugins folder remove `RBRCountdown.dll`, `RBRCountdown.log` and the `countdown` directory.
