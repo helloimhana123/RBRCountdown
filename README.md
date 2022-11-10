@@ -10,7 +10,7 @@ Please also see more credits [here](https://github.com/HanaMcHanaface/RBRCountdo
 
 ## Installation
 
-Download the latest version here: [Download](https://github.com/HanaMcHanaface/RBRCountdown/releases/download/1.0.0.0/RBRCountdown.zip)
+Download the latest version here: [Download](https://github.com/HanaMcHanaface/RBRCountdown/releases/download/1.1.0.0/RBRCountdown_1.1.0.0.zip)
 
 To install, first find your RBR installation folder. Then, go to the `Plugins` folder. Open the zip file you downloaded and move all files there to the Plugins folder. That's it!!
 
