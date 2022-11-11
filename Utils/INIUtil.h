@@ -14,6 +14,7 @@ namespace INIUtil {
 
     string Get(string section, string name, string default);
     int Get(string section, string name, int default);
+    float Get(string section, string name, float default);
     bool Get(string section, string name, bool default);
 
     void Save();

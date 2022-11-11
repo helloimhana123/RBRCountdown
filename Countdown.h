@@ -11,12 +11,14 @@
 namespace Countdown {
   IMAGE_TEXTURE countdownTex[6];
   IMAGE_TEXTURE dot_tex;
+
   int countdownNumberTexSize = 256;
 
   INIUtil::INIManager ini(Globals::PluginFolder + "\\RBRCountdown.ini");
   bool iniCentered = true;
   int iniX = 0;
   int iniY = 0;
+  float iniScale = 1.0f;
 
   void DrawCountdownNumbers(float countdown, int centerX, int centerY) {
     int i = (int)std::ceil(countdown);
@@ -25,7 +27,7 @@ namespace Countdown {
 
     float multiplier = 1 - std::abs(countdown - std::floor(countdown));
     //int size = 256 + (int)(multiplier * 100);
-    int size = countdownNumberTexSize;
+    int size = (int)std::round(countdownNumberTexSize * iniScale);
 
     int x = centerX - size / 2;
     int y = centerY - size;
@@ -49,11 +51,12 @@ namespace Countdown {
 
     float decimal = std::abs(countdown - std::floor(countdown));
     int dots = (int)std::floor(decimal * 10); // floor
-    int size = 16;
-    int y = 50;
+    int size = (int)std::round(16 * iniScale);
+    int dotDistance = (int)std::round(10 * iniScale);
+    int y = (int)std::round(50 * iniScale);
 
     for(int i = 0; i < dots; i++) {
-      int x = i * (size + 10);
+      int x = i * (size + dotDistance);
 
       HRESULT hResult = D3D9CreateVertexesForTex(
         &tex, (float)(centerX + x - size / 2), (float)(centerY + y), (float)size, (float)size,
@@ -106,6 +109,20 @@ namespace Countdown {
       iniCentered = ini.Get("Settings", "Centered", true);
       iniX = ini.Get("Settings", "XOffset", 0);
       iniY = ini.Get("Settings", "YOffset", 0);
+      {
+        int x1 = 0;
+        int y1 = 0;
+        int x2 = 0;
+        int y2 = 0;
+
+        RBRAPI_MapRBRPointToScreenPoint(0, 0, &x1, &y1);
+        RBRAPI_MapRBRPointToScreenPoint(640, 480, &x2, &y2);
+
+        // 1440 pixels is the size when screen size is 1920
+        iniScale = (float)std::abs(x2 - x1) / 1440.0f;
+        iniScale *= ini.Get("Settings", "Scale", 1.0f);
+      }
+
       ini.Save();
     } catch(...) {
       LogUtil::LastExceptionToFile("Failed loading INI.");

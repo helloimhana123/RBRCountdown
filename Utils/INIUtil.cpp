@@ -48,6 +48,20 @@ namespace INIUtil {
     return intValue;
   }
 
+  float INIManager::Get(string section, string name, float default) {
+    string value = Get(section, name, std::to_string(default));
+    int floatValue = default;
+    try {
+      floatValue = std::stof(value);
+    } catch(...) {
+      LogUtil::LastExceptionToFile(
+        "Failed getting INI value for section: " + section +
+        ", name: " + name
+      );
+    }
+    return floatValue;
+  }
+
   bool INIManager::Get(string section, string name, bool default) {
     string defaultString = default ? "True" : "False";
     string value = Get(section, name, defaultString);
