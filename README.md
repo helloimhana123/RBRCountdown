@@ -14,6 +14,15 @@ Download the latest version here: [Download](https://github.com/HanaMcHanaface/R
 
 To install, first find your RBR installation folder. Then, go to the `Plugins` folder. Open the zip file you downloaded and move all files there to the Plugins folder. That's it!!
 
+## Configuration
+
+In `Plugins\countdown` you will find a file called `RBRCountdown.ini`. In this file you will find the settings:
+
+* `Centered`, True or False. If True the countdown will be centered on the screen.
+* `XOffset`, Horizontal offset of the countdown. Only whole numbers. If Centered is True then the offset is from the center. Otherwise it is from the top left corner of the screen.
+* `YOffset`, Same as XOffset but vertical. Up is negative.
+* `Scale`, Scales the countdown. Decimal number.
+
 ## Uninstall
 
 In the Plugins folder, remove `RBRCountdown.dll` and the `countdown` folder.
