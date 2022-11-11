@@ -5,13 +5,14 @@
 
 #pragma once
 
-
-#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
-// Windows Header Files:
+#define WIN32_LEAN_AND_MEAN // Exclude rarely-used stuff from Windows headers
 #include <windows.h>
 
-// reference additional headers your program requires here
+#include <shlwapi.h>
+#pragma comment(lib, "Shlwapi.lib")
+
 #include <stdio.h>
-#include <assert.h>
 #include <string>
-#include <memory>
+#include <iostream>
+#include <fstream>
+#include <iostream>
