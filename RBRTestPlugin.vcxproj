@@ -102,6 +102,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Utils\INIUtil.cpp" />
     <ClCompile Include="Utils\LogUtil.cpp" />
     <ClCompile Include="Utils\StringUtil.cpp" />
     <ClCompile Include="Lib\Detourxs\detourxs.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="Countdown.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Utils\INIUtil.h" />
     <ClInclude Include="Utils\LogUtil.h" />
     <ClInclude Include="Utils\StringUtil.h" />
     <ClInclude Include="Lib\Detourxs\detourxs.h" />

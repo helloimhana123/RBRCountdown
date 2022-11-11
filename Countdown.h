@@ -6,11 +6,17 @@
 #include "RBR/D3D9Helpers.h"
 #include "Utils/LogUtil.h"
 #include "Utils/StringUtil.h"
+#include "Utils/INIUtil.h"
 
 namespace Countdown {
   IMAGE_TEXTURE countdownTex[6];
   IMAGE_TEXTURE dot_tex;
   int countdownNumberTexSize = 256;
+
+  INIUtil::INIManager ini(Globals::PluginFolder + "\\RBRCountdown.ini");
+  bool iniCentered = true;
+  int iniX = 0;
+  int iniY = 0;
 
   void DrawCountdownNumbers(float countdown, int centerX, int centerY) {
     int i = (int)std::ceil(countdown);
@@ -22,7 +28,7 @@ namespace Countdown {
     int size = countdownNumberTexSize;
 
     int x = centerX - size / 2;
-    int y = centerY - size / 2;
+    int y = centerY - size;
 
     HRESULT hResult = D3D9CreateVertexesForTex(
       &tex, (float)x, (float)y, (float)size, (float)size,
@@ -44,7 +50,7 @@ namespace Countdown {
     float decimal = std::abs(countdown - std::floor(countdown));
     int dots = (int)std::floor(decimal * 10); // floor
     int size = 16;
-    int y = countdownNumberTexSize / 2 + 50;
+    int y = 50;
 
     for(int i = 0; i < dots; i++) {
       int x = i * (size + 10);
@@ -83,13 +89,32 @@ namespace Countdown {
 
     int centerX = 0;
     int centerY = 0;
-    RBRAPI_MapRBRPointToScreenPoint(320, 240, &centerX, &centerY);
+
+    if(iniCentered) {
+      RBRAPI_MapRBRPointToScreenPoint(320, 240, &centerX, &centerY);
+    }
+
+    centerX += iniX;
+    centerY += iniY;
 
     DrawCountdownNumbers(countdown, centerX, centerY);
     DrawCountdownDots(countdown, centerX, centerY);
   }
 
+  void LoadINI() {
+    try {
+      iniCentered = ini.Get("Settings", "Centered", true);
+      iniX = ini.Get("Settings", "XOffset", 0);
+      iniY = ini.Get("Settings", "YOffset", 0);
+      ini.Save();
+    } catch(...) {
+      LogUtil::LastExceptionToFile("Failed loading INI.");
+    }
+  }
+
   void InitCountdown() {
+    LoadINI();
+
     std::wstring countdownTexPath = StringUtil::string_to_wide_string(Globals::PluginFolder);
 
     for(int i = 0; i < 6; i++) {
