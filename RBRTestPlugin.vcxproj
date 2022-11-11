@@ -118,6 +118,7 @@
   <ItemGroup>
     <ClInclude Include="Countdown.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Utils\LogUtil.h" />
     <ClInclude Include="Utils\StringUtil.h" />
     <ClInclude Include="Lib\Detourxs\detourxs.h" />
@@ -133,11 +134,11 @@
     <ClInclude Include="Plugin.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Library Include="Lib\Detourxs\LDE64.lib" />
     <Library Include="Lib\Detourxs\LDE64x64.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
