@@ -40,6 +40,7 @@ public:
 
   virtual const char* GetName(void) {    
     if(Func_OrigRBRDirectXEndScene == nullptr) {
+      // Do the initialization and texture creation only once because RBR may call GetName several times
       LogUtil::ToFile("Initializing the plugin");
       RBRAPI_InitializeObjReferences();
       Countdown::InitCountdown();
