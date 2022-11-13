@@ -83,13 +83,7 @@ namespace Countdown {
   }
 
   void DrawCountdown() {
-    // If we are not in the car, do nothing.
-    if(g_pRBRGameMode->gameMode != 0x01) { return; }
-
     float countdown = g_pRBRCarInfo->stageStartCountdown;
-
-    if(countdown > 5 || countdown < -1) { return; }
-
     int centerX = 0;
     int centerY = 0;
 

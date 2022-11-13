@@ -9,6 +9,15 @@
 tRBRDirectXEndScene Func_OrigRBRDirectXEndScene = nullptr;
 
 HRESULT __fastcall CustomRBRDirectXEndScene(void* objPointer) {
+  // We need code at the beginning of this function that is not a call to another function.
+  // If we just added "Countdown::DrawCountdown();" then hooking EndScene from another 
+  // plugin will fail. This is because of some technicality of how the hooking works.
+
+  // If we are not in the car, do nothing.
+  if(g_pRBRGameMode->gameMode != 0x01) { return ::Func_OrigRBRDirectXEndScene(objPointer); }
+  float countdown = g_pRBRCarInfo->stageStartCountdown;
+  if(countdown > 5 || countdown < -1) { return ::Func_OrigRBRDirectXEndScene(objPointer); }
+
   Countdown::DrawCountdown();
 
   return ::Func_OrigRBRDirectXEndScene(objPointer);
