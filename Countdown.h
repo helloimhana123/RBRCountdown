@@ -94,6 +94,11 @@ namespace Countdown {
     centerX += iniX;
     centerY += iniY;
 
+    // Get this number by taking the font height (=388) divide
+    // by 2 (=194) then divide by image height (=194/1024=0.189453125)
+    // This will center the text on screen.
+    centerY += 0.1894531f * countdownNumberTexSize * iniScale;
+
     DrawCountdownNumbers(countdown, centerX, centerY);
     DrawCountdownDots(countdown, centerX, centerY);
   }
