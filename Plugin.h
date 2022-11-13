@@ -22,13 +22,13 @@ public:
   Plugin(IRBRGame* pGame) : m_pGame(pGame) {
     LogUtil::ToFile("Creating Plugin " + Globals::PluginName + ".");
 
-    //if(CreateDirectory(Globals::PluginFolder.c_str(), NULL) ||
-    //  ERROR_ALREADY_EXISTS == GetLastError()
-    //  ) {
-    //  // success
-    //} else {
-    //  LogUtil::ToFile("Failed creating plugin folder.");
-    //}
+    if(CreateDirectory(Globals::PluginFolder.c_str(), NULL) ||
+      ERROR_ALREADY_EXISTS == GetLastError()
+      ) {
+      // success
+    } else {
+      LogUtil::ToFile("Failed creating plugin folder.");
+    }
   }
 
   virtual ~Plugin(void) {
