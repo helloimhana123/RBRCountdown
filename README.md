@@ -16,7 +16,7 @@ To install, first find your RBR installation folder. Then, go to the `Plugins` f
 
 ## Configuration
 
-In `Plugins\countdown` you will find a file called `RBRCountdown.ini`. In this file you will find the settings:
+In `Plugins\RBRCountdown` you will find a file called `RBRCountdown.ini`. In this file you will find the settings:
 
 * `Centered`, True or False. If True the countdown will be centered on the screen.
 * `XOffset`, Horizontal offset of the countdown. Only whole numbers. If Centered is True then the offset is from the center. Otherwise it is from the top left corner of the screen.
@@ -25,8 +25,8 @@ In `Plugins\countdown` you will find a file called `RBRCountdown.ini`. In this f
 
 ## Uninstall
 
-In the Plugins folder, remove `RBRCountdown.dll` and the `countdown` folder.
+In the Plugins folder, remove `RBRCountdown.dll` and the `RBRCountdown` folder.
 
 ## Building
 
-If you build debug it will probably fail because it tries to copy the DLL to the RBR plugins folder. Check `Build Events->Post-Build Events` in the project settings. You also need the `countdown` folder in the Plugins folder. Copy it from the latest build is easiest. The textures are created from `textures\countdown.psd` by doing export layers to files, and `textures\countdown-dot.psd` by quick export PNG.
+If you build debug it will probably fail because it tries to copy the DLL to the RBR plugins folder. Check `Build Events->Post-Build Events` in the project settings. You also need the `RBRCountdown` folder in the Plugins folder. Copy it from the latest build is easiest. The textures are created from `textures\countdown.psd` by doing export layers to files, and `textures\countdown-dot.psd` by quick export PNG.
