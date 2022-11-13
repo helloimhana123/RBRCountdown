@@ -1,6 +1,8 @@
 
 #include "INIUtil.h"
 
+#include <fstream>
+
 namespace INIUtil {
   using std::string;
 
@@ -28,21 +30,21 @@ namespace INIUtil {
   INIManager::~INIManager() {
   }
 
-  string INIManager::Get(string section, string name, string default) {
-    string value = string(ini.GetValue(section.c_str(), name.c_str(), default.c_str()));
+  string INIManager::Get(string section, string name, string defaultValue) {
+    string value = string(ini.GetValue(section.c_str(), name.c_str(), defaultValue.c_str()));
 
     // Set value to apply defaults and flag "ini file content modified" status if the default was inserted as a new option
-    if (ini.SetValue(section.c_str(), name.c_str(), value.c_str()) == SI_INSERTED)
+    if(ini.SetValue(section.c_str(), name.c_str(), value.c_str()) == SI_INSERTED)
     {
-        defaultOptionsSet = true;
+      defaultOptionsSet = true;
     }
-        
+
     return value;
   }
 
-  int INIManager::Get(string section, string name, int default) {
-    string value = Get(section, name, std::to_string(default));
-    int intValue = default;
+  int INIManager::Get(string section, string name, int defaultValue) {
+    string value = Get(section, name, std::to_string(defaultValue));
+    int intValue = defaultValue;
     try {
       intValue = std::stoi(value);
     } catch(...) {
@@ -54,9 +56,9 @@ namespace INIUtil {
     return intValue;
   }
 
-  float INIManager::Get(string section, string name, float default) {
-    string value = Get(section, name, std::to_string(default));
-    float floatValue = default;
+  float INIManager::Get(string section, string name, float defaultValue) {
+    string value = Get(section, name, std::to_string(defaultValue));
+    float floatValue = defaultValue;
     try {
       // Decimal separator always as '.' in the source string representing a float value regardless of the default PC localizaation
       _locale_t convLocaleUS = _create_locale(LC_NUMERIC, "en-US");
@@ -70,10 +72,10 @@ namespace INIUtil {
     return floatValue;
   }
 
-  bool INIManager::Get(string section, string name, bool default) {
-    string defaultString = default ? "True" : "False";
+  bool INIManager::Get(string section, string name, bool defaultValue) {
+    string defaultString = defaultValue ? "True" : "False";
     string value = Get(section, name, defaultString);
-    bool boolValue = default;
+    bool boolValue = defaultValue;
 
     if(_strnicmp(value.c_str(), "true", 4) == 0 || value == "1") {
       boolValue = true;
@@ -89,16 +91,16 @@ namespace INIUtil {
   }
 
   void INIManager::Save(bool forceSave) {
-      if (defaultOptionsSet || forceSave) {
-          SI_Error saveResult = ini.SaveFile(filePath.c_str());
+    if(defaultOptionsSet || forceSave) {
+      SI_Error saveResult = ini.SaveFile(filePath.c_str());
 
-          if (saveResult != SI_OK) {
-              LogUtil::ToFile("Error saving ini to: " + filePath);
-              LogUtil::ToFile("Error saving ini with error: " + std::to_string(saveResult));
-              if (saveResult == SI_FILE) {
-                  LogUtil::ToFile("Error reason: " + LogUtil::ErrNoToString(errno));
-              }
-          }
+      if(saveResult != SI_OK) {
+        LogUtil::ToFile("Error saving ini to: " + filePath);
+        LogUtil::ToFile("Error saving ini with error: " + std::to_string(saveResult));
+        if(saveResult == SI_FILE) {
+          LogUtil::ToFile("Error reason: " + LogUtil::ErrNoToString(errno));
+        }
       }
+    }
   }
 }

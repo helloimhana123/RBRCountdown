@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "..\stdafx.h"
+#include <string>
 
 namespace StringUtil {
   std::wstring string_to_wide_string(const std::string& string);

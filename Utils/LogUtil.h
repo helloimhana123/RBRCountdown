@@ -1,7 +1,6 @@
 #pragma once
 
-#include "..\stdafx.h"
-
+#include <string>
 #include "..\Globals.h"
 #include "StringUtil.h"
 

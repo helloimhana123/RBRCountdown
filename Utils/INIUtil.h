@@ -1,6 +1,5 @@
 #pragma once
 
-#include "..\stdafx.h"
 #include "LogUtil.h"
 #include "..\Lib\SimpleINI\SimpleIni.h"
 
@@ -12,10 +11,10 @@ namespace INIUtil {
     INIManager(std::string filePath);
     ~INIManager();
 
-    string Get(string section, string name, string default);
-    int Get(string section, string name, int default);
-    float Get(string section, string name, float default);
-    bool Get(string section, string name, bool default);
+    string Get(string section, string name, string defaultValue);
+    int Get(string section, string name, int defaultValue);
+    float Get(string section, string name, float defaultValue);
+    bool Get(string section, string name, bool defaultValue);
 
     void Save(bool forceSave = false);
 
