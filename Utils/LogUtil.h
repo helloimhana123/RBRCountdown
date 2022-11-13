@@ -16,4 +16,5 @@ namespace LogUtil {
   void ToFile(const char* message);
   void ToScreen(const char* message);
   void LastExceptionToFile(string source);
+  std::string ErrNoToString(int errorno);
 }
