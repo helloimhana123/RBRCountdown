@@ -16,7 +16,7 @@ HRESULT __fastcall CustomRBRDirectXEndScene(void* objPointer) {
   // If we are not in the car, do nothing.
   if(g_pRBRGameMode->gameMode != 0x01) { return ::Func_OrigRBRDirectXEndScene(objPointer); }
   float countdown = g_pRBRCarInfo->stageStartCountdown;
-  if(countdown > 5 || countdown < -1) { return ::Func_OrigRBRDirectXEndScene(objPointer); }
+  if(countdown < -1 || countdown > 5) { return ::Func_OrigRBRDirectXEndScene(objPointer); }
 
   Countdown::DrawCountdown();
 
