@@ -30,7 +30,7 @@ namespace INIUtil {
   INIManager::~INIManager() {
   }
 
-  string INIManager::Get(string section, string name, string defaultValue) {
+  string INIManager::Get(const string& section, const string& name, const string& defaultValue) {
     string value = string(ini.GetValue(section.c_str(), name.c_str(), defaultValue.c_str()));
 
     // Set value to apply defaults and flag "ini file content modified" status if the default was inserted as a new option
@@ -42,7 +42,7 @@ namespace INIUtil {
     return value;
   }
 
-  int INIManager::Get(string section, string name, int defaultValue) {
+  int INIManager::Get(const string& section, const string& name, int defaultValue) {
     string value = Get(section, name, std::to_string(defaultValue));
     int intValue = defaultValue;
     try {
@@ -56,7 +56,7 @@ namespace INIUtil {
     return intValue;
   }
 
-  float INIManager::Get(string section, string name, float defaultValue) {
+  float INIManager::Get(const string& section, const string& name, float defaultValue) {
     string value = Get(section, name, std::to_string(defaultValue));
     float floatValue = defaultValue;
     try {
@@ -72,7 +72,7 @@ namespace INIUtil {
     return floatValue;
   }
 
-  bool INIManager::Get(string section, string name, bool defaultValue) {
+  bool INIManager::Get(const string& section, const string& name, bool defaultValue) {
     string defaultString = defaultValue ? "True" : "False";
     string value = Get(section, name, defaultString);
     bool boolValue = defaultValue;

@@ -8,12 +8,12 @@ namespace LogUtil {
   using std::wstring;
   using std::string;
 
-  void ToFile(wstring message);
-  void ToScreen(wstring message);
-  void ToFile(string message);
-  void ToScreen(string message);
+  void ToFile(const wstring& message);
+  void ToScreen(const wstring& message);
+  void ToFile(const string& message);
+  void ToScreen(const string& message);
   void ToFile(const char* message);
   void ToScreen(const char* message);
-  void LastExceptionToFile(string source);
+  void LastExceptionToFile(const string& source);
   std::string ErrNoToString(int errorno);
 }

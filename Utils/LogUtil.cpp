@@ -32,20 +32,20 @@ namespace LogUtil {
     Globals::PluginFolder + "\\" + Globals::PluginName + ".log"
   );
 
-  void ToFile(wstring message) {
+  void ToFile(const wstring& message) {
     output << message << std::endl;
     output.flush();
   }
 
-  void ToScreen(wstring message) {
+  void ToScreen(const wstring& message) {
     ToFile(L"To Screen: " + message);
   }
 
-  void ToFile(string message) {
+  void ToFile(const string& message) {
     ToFile(StringUtil::string_to_wide_string(message));
   }
 
-  void ToScreen(string message) {
+  void ToScreen(const string& message) {
     ToScreen(StringUtil::string_to_wide_string(message));
   }
 
@@ -57,7 +57,7 @@ namespace LogUtil {
     ToScreen(string(message));
   }
 
-  void LastExceptionToFile(string source) {
+  void LastExceptionToFile(const string& source) {
     ToFile(source + " Exception: " + lastExceptionString());
   }
 
