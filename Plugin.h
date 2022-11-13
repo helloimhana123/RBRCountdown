@@ -38,17 +38,12 @@ public:
     LogUtil::ToFile("Destroying Plugin " + Globals::PluginName + ".");
   }
 
-  virtual const char* GetName(void) {
-    LogUtil::ToFile("GetName");
-
-    RBRAPI_InitializeObjReferences();
-
-    Countdown::InitCountdown();
-
-    //auto gtcDirect3DBeginScene = new DetourXS((LPVOID)0x0040E880, ::CustomRBRDirectXBeginScene, TRUE);
-    //Func_OrigRBRDirectXBeginScene = (tRBRDirectXBeginScene)gtcDirect3DBeginScene->GetTrampoline();
-
+  virtual const char* GetName(void) {    
     if(Func_OrigRBRDirectXEndScene == nullptr) {
+      LogUtil::ToFile("Initializing the plugin");
+      RBRAPI_InitializeObjReferences();
+      Countdown::InitCountdown();
+
       auto gtcDirect3DEndScene = new DetourXS((LPVOID)0x0040E890, ::CustomRBRDirectXEndScene, TRUE);
       Func_OrigRBRDirectXEndScene = (tRBRDirectXEndScene)gtcDirect3DEndScene->GetTrampoline();
     }

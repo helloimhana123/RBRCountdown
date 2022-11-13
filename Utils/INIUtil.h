@@ -17,9 +17,10 @@ namespace INIUtil {
     float Get(string section, string name, float default);
     bool Get(string section, string name, bool default);
 
-    void Save();
+    void Save(bool forceSave = false);
 
   private:
+    bool defaultOptionsSet;
     string filePath;
     CSimpleIniA ini;
   };

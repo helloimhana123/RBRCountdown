@@ -60,4 +60,10 @@ namespace LogUtil {
   void LastExceptionToFile(string source) {
     ToFile(source + " Exception: " + lastExceptionString());
   }
+
+  std::string ErrNoToString(int errorno) {
+    char szErrorMsg[256] = { 0 };
+    strerror_s(szErrorMsg, errno);
+    return std::string(szErrorMsg) + " (" + std::to_string(errorno) + ")";
+  }
 }
